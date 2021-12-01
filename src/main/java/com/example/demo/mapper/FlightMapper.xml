@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.FlightMapper" >
+    <resultMap id="BaseResultMap" type="com.example.demo.bean.Flight" >
+        <id column="Flight_ID" property="Flight_ID" jdbcType="INTEGER" />
+        <result column="Flight_Number" property="Flight_Number" jdbcType="VARCHAR" />
+        <result column="Flight_DepartureTime" property="Flight_DepartureTime" jdbcType="TIME" />
+        <result column="Flight_ArrivalTime" property="Flight_ArrivalTime" jdbcType="TIME" />
+        <result column="Flight_DeparturePosition" property="Flight_DeparturePosition" jdbcType="VARCHAR" />
+        <result column="Flight_ArrivalPosition" property="Flight_ArrivalPosition" jdbcType="VARCHAR" />
+        <result column="Flight_Fare" property="Flight_Fare" jdbcType="INTEGER" />
+        <result column="Airline_Name" property="Airline_Name" jdbcType="VARCHAR" />
+        <result column="Trip_ID" property="Trip_ID" jdbcType="INTEGER" />
+        <result column="Airport_Name" property="Airport_Name" jdbcType="VARCHAR" />
+        <result column="Airplane_Type" property="Airplane_Type" jdbcType="VARCHAR" />
+    </resultMap>
+
+
+
+    <select id="selectFlight" resultMap="BaseResultMap" >
+        select flight.*
+        from flight
+        where flight.Trip_ID in
+        (select trip.Trip_ID
+            from trip
+         where trip.Trip_DeparturePosition=#{DP,jdbcType=VARCHAR}
+           And trip.Trip_ArrivalPosition=#{AP,jdbcType=VARCHAR}
+        )
+
+    </select>
+
+</mapper>

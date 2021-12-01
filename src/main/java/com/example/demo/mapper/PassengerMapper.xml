@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.PassengerMapper" >
+    <resultMap id="BaseResultMap" type="com.example.demo.bean.Passenger" >
+        <id column="Passenger_ID" property="Passenger_ID" jdbcType="INTEGER" />
+        <result column="Passenger_Name" property="Passenger_Name" jdbcType="VARCHAR" />
+        <result column="Passenger_Sex" property="Passenger_Sex" jdbcType="VARCHAR" />
+        <result column="Passenger_Telephone" property="Passenger_Telephone" jdbcType="VARCHAR" />
+        <result column="Passenger_PassportNumber" property="Passenger_PassportNumber" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+            Passenger_ID,Passenger_Name, Passenger_Sex, Passenger_Telephone,Passenger_PassportNumber
+        from passenger
+    </select>
+
+    <insert id="insertPassenger" parameterType="com.example.demo.bean.Passenger">
+        insert into passenger(Passenger_ID,Passenger_Name, Passenger_Sex, Passenger_Telephone,Passenger_PassportNumber)
+         values (#{Passenger_ID},#{Passenger_Name},#{Passenger_Sex},#{Passenger_Telephone},#{Passenger_PassportNumber})
+    </insert>
+
+</mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.TicketMapper" >
+    <resultMap id="BaseResultMap" type="com.example.demo.bean.Ticket" >
+        <id column="Ticket_ID" property="Ticket_ID" jdbcType="INTEGER" />
+        <result column="Passenger_ID" property="Passenger_ID" jdbcType="INTEGER" />
+        <result column="Flight_ID" property="Flight_ID" jdbcType="INTEGER" />
+        <result column="Seat_ID" property="Seat_ID" jdbcType="INTEGER" />
+        <result column="Trip_ID" property="Trip_ID" jdbcType="INTEGER" />
+    </resultMap>
+
+    <insert id="insertTicket" parameterType="com.example.demo.bean.Ticket">
+        insert into ticket(Ticket_ID,Passenger_ID, Flight_ID, Seat_ID,Trip_ID, Ticket_Time)
+        values (#{Ticket_ID},#{Passenger_ID},#{Flight_ID},#{Seat_ID},#{Trip_ID},#{Ticket_Time})
+    </insert>
+</mapper>

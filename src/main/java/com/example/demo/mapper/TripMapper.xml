@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.TripMapper" >
+    <resultMap id="BaseResultMap" type="com.example.demo.bean.Trip" >
+        <id column="Trip_ID" property="Trip_ID" jdbcType="INTEGER" />
+        <result column="Trip_DeparturePosition" property="Trip_DeparturePosition" jdbcType="VARCHAR" />
+        <result column="Trip_ArrivalPosition" property="Trip_ArrivalPosition" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        Trip_ID, Trip_DeparturePosition, Trip_ArrivalPosition
+    </sql>
+
+<select id="selectTrip" resultMap="BaseResultMap" >
+    select * from trip
+    where Trip_DeparturePosition=#{DP,jdbcType=VARCHAR}
+    And Trip_ArrivalPosition=#{AP,jdbcType=VARCHAR}
+</select>
+
+</mapper>
